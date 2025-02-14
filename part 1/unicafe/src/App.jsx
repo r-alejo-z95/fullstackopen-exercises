@@ -36,6 +36,20 @@ const Positive = ({ text, percentage }) => {
   );
 };
 
+const Statistics = ({ good, neutral, bad, total, average, posiPercent }) => {
+  return (
+    <div>
+      <Header text="statistics" />
+      <Counter text="good" count={good} />
+      <Counter text="neutral" count={neutral} />
+      <Counter text="bad" count={bad} />
+      <TotalCount text="all" count={total} />
+      <Average text="average" avg={average} />
+      <Positive text="positive" percentage={posiPercent} />
+    </div>
+  );
+};
+
 const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
@@ -63,13 +77,15 @@ const App = () => {
       <button onClick={clickGood}>good</button>
       <button onClick={clickNeutral}>neutral</button>
       <button onClick={clickBad}>bad</button>
-      <Header text="statistics" />
-      <Counter text="good" count={good} />
-      <Counter text="neutral" count={neutral} />
-      <Counter text="bad" count={bad} />
-      <TotalCount text="all" count={total} />
-      <Average text="average" avg={average} />
-      <Positive text="positive" percentage={posiPercent} />
+
+      <Statistics
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        total={total}
+        average={average}
+        posiPercent={posiPercent}
+      />
     </div>
   );
 };
