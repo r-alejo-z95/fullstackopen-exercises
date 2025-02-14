@@ -37,17 +37,27 @@ const Positive = ({ text, percentage }) => {
 };
 
 const Statistics = ({ good, neutral, bad, total, average, posiPercent }) => {
-  return (
-    <div>
-      <Header text="statistics" />
-      <Counter text="good" count={good} />
-      <Counter text="neutral" count={neutral} />
-      <Counter text="bad" count={bad} />
-      <TotalCount text="all" count={total} />
-      <Average text="average" avg={average} />
-      <Positive text="positive" percentage={posiPercent} />
-    </div>
-  );
+  if (total === 0) {
+    const noFeedback = "No feedback given";
+    return (
+      <div>
+        <Header text="statistics" />
+        <p>{noFeedback}</p>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Header text="statistics" />
+        <Counter text="good" count={good} />
+        <Counter text="neutral" count={neutral} />
+        <Counter text="bad" count={bad} />
+        <TotalCount text="all" count={total} />
+        <Average text="average" avg={average} />
+        <Positive text="positive" percentage={posiPercent} />
+      </div>
+    );
+  }
 };
 
 const App = () => {
