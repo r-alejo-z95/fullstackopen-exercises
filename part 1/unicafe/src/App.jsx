@@ -6,9 +6,10 @@ const Button = ({ onClick, text }) => {
 
 const StatisticLine = ({ text, value }) => {
   return (
-    <p>
-      {text} {value}
-    </p>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
   );
 };
 
@@ -25,12 +26,16 @@ const Statistics = ({ good, neutral, bad, total, average, posiPercent }) => {
     return (
       <div>
         <h1>statistics</h1>
-        <StatisticLine text="good" value={good} />
-        <StatisticLine text="neutral" value={neutral} />
-        <StatisticLine text="bad" value={bad} />
-        <StatisticLine text="all" value={total} />
-        <StatisticLine text="average" value={average} />
-        <StatisticLine text="positive" value={posiPercent} />
+        <table>
+          <tbody>
+            <StatisticLine text="good" value={good} />
+            <StatisticLine text="neutral" value={neutral} />
+            <StatisticLine text="bad" value={bad} />
+            <StatisticLine text="all" value={total} />
+            <StatisticLine text="average" value={average} />
+            <StatisticLine text="positive" value={`${posiPercent} %`} />
+          </tbody>
+        </table>
       </div>
     );
   }
@@ -54,8 +59,8 @@ const App = () => {
     setBad(updatedBad);
   };
   const total = good + neutral + bad;
-  const average = (good - bad) / total;
-  const posiPercent = (good * 100) / total;
+  const average = total === 0 ? 0 : (good - bad) / total;
+  const posiPercent = total === 0 ? 0 : (good * 100) / total;
 
   return (
     <div>
@@ -70,7 +75,7 @@ const App = () => {
         bad={bad}
         total={total}
         average={average}
-        posiPercent={posiPercent + "%"}
+        posiPercent={posiPercent}
       />
     </div>
   );
