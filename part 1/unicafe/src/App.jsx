@@ -1,37 +1,13 @@
 import { useState } from "react";
 
-const Header = ({ text }) => {
-  return <h1>{text}</h1>;
+const Button = ({ onClick, text }) => {
+  return <button onClick={onClick}>{text}</button>;
 };
 
-const Counter = ({ text, count }) => {
+const StatisticLine = ({ text, value }) => {
   return (
     <p>
-      {text} {count}
-    </p>
-  );
-};
-
-const TotalCount = ({ text, count }) => {
-  return (
-    <p>
-      {text} {count}
-    </p>
-  );
-};
-
-const Average = ({ text, avg }) => {
-  return (
-    <p>
-      {text} {avg}
-    </p>
-  );
-};
-
-const Positive = ({ text, percentage }) => {
-  return (
-    <p>
-      {text} {percentage} %
+      {text} {value}
     </p>
   );
 };
@@ -41,20 +17,20 @@ const Statistics = ({ good, neutral, bad, total, average, posiPercent }) => {
     const noFeedback = "No feedback given";
     return (
       <div>
-        <Header text="statistics" />
+        <h1>statistics</h1>
         <p>{noFeedback}</p>
       </div>
     );
   } else {
     return (
       <div>
-        <Header text="statistics" />
-        <Counter text="good" count={good} />
-        <Counter text="neutral" count={neutral} />
-        <Counter text="bad" count={bad} />
-        <TotalCount text="all" count={total} />
-        <Average text="average" avg={average} />
-        <Positive text="positive" percentage={posiPercent} />
+        <h1>statistics</h1>
+        <StatisticLine text="good" value={good} />
+        <StatisticLine text="neutral" value={neutral} />
+        <StatisticLine text="bad" value={bad} />
+        <StatisticLine text="all" value={total} />
+        <StatisticLine text="average" value={average} />
+        <StatisticLine text="positive" value={posiPercent} />
       </div>
     );
   }
@@ -83,10 +59,10 @@ const App = () => {
 
   return (
     <div>
-      <Header text="give feedback" />
-      <button onClick={clickGood}>good</button>
-      <button onClick={clickNeutral}>neutral</button>
-      <button onClick={clickBad}>bad</button>
+      <h1>give feedback</h1>
+      <Button onClick={clickGood} text={"good"} />
+      <Button onClick={clickNeutral} text={"neutral"} />
+      <Button onClick={clickBad} text={"bad"} />
 
       <Statistics
         good={good}
@@ -94,7 +70,7 @@ const App = () => {
         bad={bad}
         total={total}
         average={average}
-        posiPercent={posiPercent}
+        posiPercent={posiPercent + "%"}
       />
     </div>
   );
