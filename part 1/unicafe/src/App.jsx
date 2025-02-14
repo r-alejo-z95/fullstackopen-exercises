@@ -6,11 +6,33 @@ const Header = ({ text }) => {
 
 const Counter = ({ text, count }) => {
   return (
-    <div>
-      <p>
-        {text} {count}
-      </p>
-    </div>
+    <p>
+      {text} {count}
+    </p>
+  );
+};
+
+const TotalCount = ({ text, count }) => {
+  return (
+    <p>
+      {text} {count}
+    </p>
+  );
+};
+
+const Average = ({ text, avg }) => {
+  return (
+    <p>
+      {text} {avg}
+    </p>
+  );
+};
+
+const Positive = ({ text, percentage }) => {
+  return (
+    <p>
+      {text} {percentage} %
+    </p>
   );
 };
 
@@ -31,6 +53,9 @@ const App = () => {
     const updatedBad = bad + 1;
     setBad(updatedBad);
   };
+  const total = good + neutral + bad;
+  const average = (good - bad) / total;
+  const posiPercent = (good * 100) / total;
 
   return (
     <div>
@@ -42,6 +67,9 @@ const App = () => {
       <Counter text="good" count={good} />
       <Counter text="neutral" count={neutral} />
       <Counter text="bad" count={bad} />
+      <TotalCount text="all" count={total} />
+      <Average text="average" avg={average} />
+      <Positive text="positive" percentage={posiPercent} />
     </div>
   );
 };
